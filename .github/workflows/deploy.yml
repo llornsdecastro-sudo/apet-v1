@@ -28,6 +28,8 @@ jobs:
           echo "Deploying $ZIP"
           mkdir -p _site
           unzip -o "$ZIP" -d _site
+          # Files in /site override the zip (quick edits without a new zip)
+          if [ -d site ]; then cp -r site/. _site/; fi
           echo "aquaphilexport.com" > _site/CNAME
           ls -la _site
       - uses: actions/configure-pages@v5
